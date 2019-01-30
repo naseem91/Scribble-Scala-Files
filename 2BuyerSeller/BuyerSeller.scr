@@ -1,0 +1,15 @@
+module BuyerSeller;
+
+type <java> "java.lang.String" from "rt.jar" as String;
+
+global protocol Proto (role Buyer,role Seller) {
+
+	Introduce(String) from Buyer to Seller;
+	Order(String) from Buyer to Seller;
+
+	choice at Seller {
+		Invoice(String) from Seller to Buyer;
+	} or {
+		Rejected(String) from Seller to Buyer;
+	}
+}
